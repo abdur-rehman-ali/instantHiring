@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %} {% load static %} {% block body %}
+<div class="container section-pad-t30">
+  <h1>Register page</h1>
+
+  <form action="" method="POST" novalidate>
+    {% csrf_token %}
+    <div class="row gtr-uniform">
+      {% csrf_token %} {% for er in form.non_field_errors %}
+      <small class="alert-danger">{{er|striptags}}</small>
+      {% endfor %} {% for field in form %}
+      <div class="col-12 col-12-xsmall">
+        {{field.label_tag}} {{field}}
+        <small class="alert-danger">{{field.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+
+      <div class="col-12">
+        <input type="submit" class="btn btn-primary" value="Sign in" />
+      </div>
+    </div>
+  </form>
+  {% comment %}
+  <small><a href="{% url 'logIn' %}">Already have account?</a></small> {%endcomment %}
+</div>
+
+{% endblock body %}
