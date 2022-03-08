@@ -2,24 +2,23 @@
 <div class="container section-pad-t30">
   <h1>Register page</h1>
 
-  <form action="" method="POST" novalidate>
-    {% csrf_token %}
+<form action="{% url 'logIn' %}" method="POST" novalidate>
     <div class="row gtr-uniform">
       {% csrf_token %} {% for er in form.non_field_errors %}
       <small class="alert-danger">{{er|striptags}}</small>
       {% endfor %} {% for field in form %}
-      <div class="col-12 col-12-xsmall mb-20">
+      <div class="col-12 col-12-xsmall">
         {{field.label_tag}} {{field}}
         <small class="alert-danger">{{field.errors|striptags}}</small>
       </div>
       {% endfor %}
 
       <div class="col-12">
-        <input type="submit" class="btn btn-primary btn-block mb-20" value="Sign in" />
+        <input type="submit" class="btn btn-success btn-block" value="Log in" />
       </div>
     </div>
   </form>
-  <small class="items-link f-left" ><a href="{% url 'logIn' %}">Already have account?</a></small> 
-</div>
+  <small><a href="{% url 'register' %}">Don't have account yet?</a></small>
 
+</div>
 {% endblock body %}
