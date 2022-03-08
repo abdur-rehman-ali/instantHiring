@@ -1,5 +1,5 @@
 from django.contrib.auth import login,authenticate,logout
-from django.shortcuts import render,HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm
 
 # Create your views here.
@@ -46,3 +46,7 @@ def logIn(request):
         'form':fm
     }
     return render(request,template_name,context)
+
+def logOut(request):
+    logout(request)
+    return HttpResponseRedirect('logIn')

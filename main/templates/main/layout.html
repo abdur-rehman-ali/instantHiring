@@ -108,10 +108,11 @@
                   <!-- Header-btn -->
                   <div class="header-btn d-none f-right d-lg-block">
                     {% if request.user.is_authenticated %}
-                    {% comment %} <a href="{% url 'logOut' %}" class="btn head-btn1">logOut</a> {% endcomment %}
+                    <a href="{% url 'logOut' %}" class="btn head-btn1">logOut</a>
                     {{request.user.username}}
                     {% else %}
-                    <a href="{% url 'logIn' %}" class="btn head-btn2">Login</a>
+                    <a href="{% url 'logIn' %}" class="btn head-btn1">Login</a>
+                    <a href="{% url 'register' %}" class="btn head-btn2">Register</a>
                     
                     {% endif %}
 

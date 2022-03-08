@@ -1,24 +1,24 @@
 {% extends 'main/layout.html' %} {% load static %} {% block body %}
 <div class="container section-pad-t30">
-  <h1>Register page</h1>
+  <h1>Login page</h1>
 
 <form action="{% url 'logIn' %}" method="POST" novalidate>
     <div class="row gtr-uniform">
       {% csrf_token %} {% for er in form.non_field_errors %}
       <small class="alert-danger">{{er|striptags}}</small>
       {% endfor %} {% for field in form %}
-      <div class="col-12 col-12-xsmall">
+      <div class="col-12 col-12-xsmall mb-20">
         {{field.label_tag}} {{field}}
         <small class="alert-danger">{{field.errors|striptags}}</small>
       </div>
       {% endfor %}
 
       <div class="col-12">
-        <input type="submit" class="btn btn-success btn-block" value="Log in" />
+        <input type="submit" class="btn btn-block mb-20" value="Log in" />
       </div>
     </div>
   </form>
-  <small><a href="{% url 'register' %}">Don't have account yet?</a></small>
+  <small class="items-link f-left" ><a href="{% url 'register' %}">Don't have account yet?</a></small>
 
 </div>
 {% endblock body %}
