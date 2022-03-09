@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %} {% load static %} {% block body %}
+<!-- Section -->
+<section class="container section-pad-t30">
+  {% if request.user.is_authenticated %}
+  <header class="major text-center">
+    <h1>Welcome {{request.user.username}}</h1>
+  </header>
+  {% endif %}
+
+  <!-- Update form   -->
+
+  <form action="" method="POST" novalidate>
+    <div class="row gtr-uniform">
+      {% csrf_token %} {% for er in form.non_field_errors %}
+      <small class="alert-danger">{{er|striptags}}</small>
+      {% endfor %} {% for field in form %}
+      <div class="col-12 col-12-xsmall">
+        {{field.label_tag}} {{field}}
+        <small class="alert-danger">{{field.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+
+      <div class="col-12 py-4">
+        <input type="submit" class="btn btn-primary btn-block" value="Update" />
+      </div>
+    </div>
+  </form>
+</section>
+
+{% endblock body %}

@@ -1,6 +1,7 @@
+from multiprocessing import context
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import registrationForm,logInForm
+from .forms import registrationForm,logInForm,userDataUpdateForm
 
 # Create your views here.
 
@@ -46,6 +47,24 @@ def logIn(request):
             'form':fm
         }
         return render(request,template_name,context)
+
+
+def profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            fm=userDataUpdateForm(data=request.POST,instance=request.user)
+            if fm.is_valid():
+                fm.save()
+        else:
+            fm=userDataUpdateForm(instance=request.user)
+        template_name = 'main/profile.html'
+        context={
+            'form':fm
+        }
+        return render(request,template_name,context)
+    else:
+        return HttpResponseRedirect('logIn')
+
 
 def logOut(request):
     logout(request)
