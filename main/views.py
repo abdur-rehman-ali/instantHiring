@@ -9,6 +9,15 @@ def home(request):
     return render(request,'main/index.html')
 
 
+
+def jobPost(request):
+    template_name = 'main/jobPost.html'
+    context={
+        
+    }
+    return render(request,template_name,context)
+
+
 def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
