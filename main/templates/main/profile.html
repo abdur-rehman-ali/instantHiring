@@ -1,4 +1,10 @@
-{% extends 'main/layout.html' %} {% load static %} {% block body %}
+{% extends 'main/layout.html' %} {% load static %} 
+
+{% block title %}
+profile
+{% endblock title %}
+
+{% block body %}
 <!-- Section -->
 <section class="container section-pad-t30">
   {% if request.user.is_authenticated %}
