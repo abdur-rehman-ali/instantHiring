@@ -2,18 +2,25 @@ from multiprocessing import context
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm
+from .models import jobPostData
 
 # Create your views here.
 
 def home(request):
-    return render(request,'main/index.html')
+
+    data = jobPostData.objects.all()
+    template_name = 'main/index.html'
+    context={
+        'data':data,
+    }
+    return render(request,template_name,context)
 
 
 
 def jobPost(request):
     template_name = 'main/jobPost.html'
     context={
-        
+
     }
     return render(request,template_name,context)
 
