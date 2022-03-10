@@ -26,7 +26,7 @@ def jobPost(request):
 
 def jobPostDetail(request,id):
     data = jobPostData.objects.get(id=id)
-    template_name = 'main/jobPost.html'
+    template_name = 'main/jobPostDetail.html'
     context={
         'data':data
     }
