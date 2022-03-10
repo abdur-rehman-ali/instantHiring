@@ -16,11 +16,18 @@ class jobPostData(models.Model):
     ("Content Writer", "Content Writer"),
     )
 
+    JOB_CHOICES =(
+        ("Part Time","Part Time"),
+        ("Full Time","Full Time"),
+        ("Remote","Remote"),
+        ("On site","On site"),
+    )
+
     title = models.CharField(max_length=70)
     desription = models.TextField()
     author = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
-    job_nature = models.CharField(max_length=30)
+    job_nature = models.CharField(max_length=30,choices=JOB_CHOICES,default='No choice')
     category = models.CharField(max_length=50,choices=CATEGORY_CHOICES,default='No category')
     date = models.DateTimeField(auto_now_add=True)
     user_job_post = models.ForeignKey(User,on_delete=models.CASCADE)
