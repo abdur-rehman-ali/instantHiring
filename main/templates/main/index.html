@@ -222,7 +222,7 @@ InstantHiring
                 </div>
               </div>
               <div class="items-link f-right">
-                <a href="job_details.html">{{dt.job_nature}}</a>
+                <a href="{% url 'jobPostDetail' dt.id %}">{{dt.job_nature}}</a>
                 <span>{{dt.date}}</span>
               </div>
             </div>

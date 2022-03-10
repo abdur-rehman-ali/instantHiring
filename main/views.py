@@ -24,6 +24,14 @@ def jobPost(request):
     }
     return render(request,template_name,context)
 
+def jobPostDetail(request,id):
+    data = jobPostData.objects.get(id=id)
+    template_name = 'main/jobPost.html'
+    context={
+        'data':data
+    }
+    return render(request,template_name,context)
+
 
 def register(request):
     if request.user.is_authenticated:
