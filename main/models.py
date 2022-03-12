@@ -24,7 +24,6 @@ class jobPostData(models.Model):
     )
 
     title = models.CharField(max_length=70,default='')
-    # desription = models.TextField()
     desription = RichTextField(null=True,blank=True)
     author = models.CharField(max_length=50)
     location = models.CharField(max_length=100,default='')
