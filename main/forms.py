@@ -61,7 +61,17 @@ class PostForm(forms.ModelForm):
                 'class':'form-control',
                 'placeholder':'Title',
             }),
+            'location':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Location',
+            }),
+            'vacancy':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Vacanies',
+            }),
+            'salary':forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Expected Salary',
+            }),
         }
-        labels={
-            'title':'',
-        }
+        
