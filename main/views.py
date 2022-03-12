@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import registrationForm,logInForm,userDataUpdateForm
+from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
 from .models import jobPostData
 
 # Create your views here.
@@ -18,9 +18,10 @@ def home(request):
 
 
 def jobPost(request):
+    form = PostForm()
     template_name = 'main/jobPost.html'
     context={
-
+        'form':form
     }
     return render(request,template_name,context)
 
