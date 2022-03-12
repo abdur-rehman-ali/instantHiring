@@ -25,6 +25,34 @@ def jobPost(request):
     }
     return render(request,template_name,context)
 
+def jobPost(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            fm=PostForm(request.POST)
+            if fm.is_valid():
+                postTitle = fm.cleaned_data['title']
+                desription = fm.cleaned_data['desription']
+                location = fm.cleaned_data['location']
+                job_nature = fm.cleaned_data['job_nature']
+                vacancy = fm.cleaned_data['vacancy']
+                salary = fm.cleaned_data['salary']
+                application_deadline = fm.cleaned_data['application_deadline']
+                postAuthor = request.user.username
+                post = jobPostData(title=postTitle,desription=desription,application_deadline=application_deadline,salary=salary,location=location,job_nature=job_nature,vacancy=vacancy,author=postAuthor,user_job_post_id=request.user.id)
+                post.save()
+                fm=PostForm()
+        else:       
+            fm=PostForm()
+        template_name = 'main/jobPost.html'
+        context={
+        'form':fm
+        }
+        return render(request,template_name,context)
+
+    else:
+        return HttpResponseRedirect('/logIn/')
+
+
 def jobPostDetail(request,id):
     data = jobPostData.objects.get(id=id)
     template_name = 'main/jobPostDetail.html'
