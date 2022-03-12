@@ -1,7 +1,7 @@
-from sre_constants import CATEGORY
-from unicodedata import category
+import imp
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 class jobPostData(models.Model):
@@ -23,13 +23,16 @@ class jobPostData(models.Model):
         ("On site","On site"),
     )
 
-    title = models.CharField(max_length=70)
+    title = models.CharField(max_length=70,default='')
     desription = models.TextField()
     author = models.CharField(max_length=50)
-    location = models.CharField(max_length=100)
+    location = models.CharField(max_length=100,default='')
     job_nature = models.CharField(max_length=30,choices=JOB_CHOICES,default='No choice')
     category = models.CharField(max_length=50,choices=CATEGORY_CHOICES,default='No category')
-    date = models.DateTimeField(auto_now_add=True)
+    posted_date = models.DateTimeField(auto_now_add=True)
+    vacancy = models.IntegerField(default=1)
+    salary = models.CharField(max_length=30,default='')
+    application_deadline = models.DateTimeField(default=datetime.datetime.now())
     user_job_post = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
