@@ -1,7 +1,7 @@
-import imp
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class jobPostData(models.Model):
@@ -24,7 +24,8 @@ class jobPostData(models.Model):
     )
 
     title = models.CharField(max_length=70,default='')
-    desription = models.TextField()
+    # desription = models.TextField()
+    desription = RichTextField(null=True,blank=True)
     author = models.CharField(max_length=50)
     location = models.CharField(max_length=100,default='')
     job_nature = models.CharField(max_length=30,choices=JOB_CHOICES,default='No choice')
