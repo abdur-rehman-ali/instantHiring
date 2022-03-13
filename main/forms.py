@@ -73,5 +73,12 @@ class PostForm(forms.ModelForm):
                 'class':'form-control',
                 'placeholder':'Expected Salary',
             }),
+            'category':forms.Select(attrs={
+                'class':'form-select',
+            }),
+            'job_nature':forms.Select(attrs={
+                'class':'form-select',
+            }),
+
         }
         
