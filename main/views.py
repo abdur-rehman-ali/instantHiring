@@ -3,6 +3,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
 from .models import jobPostData
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -50,7 +51,7 @@ def jobPost(request):
         return render(request,template_name,context)
 
     else:
-        return HttpResponseRedirect('/logIn/')
+        return HttpResponseRedirect('/logIn')
 
 
 def jobPostDetail(request,id):
@@ -77,7 +78,7 @@ def jobPostUpdate(request,id):
         }
         return render(request,template_name,context)
     else:
-        return HttpResponseRedirect('/logIn/')
+        return HttpResponseRedirect('/logIn')
 
 def jobPostDelete(request,id):
     if request.user.is_authenticated:
@@ -85,7 +86,7 @@ def jobPostDelete(request,id):
         post.delete()
         return HttpResponseRedirect('/')
     else:
-        return HttpResponseRedirect('/logIn/')
+        return HttpResponseRedirect('/logIn')
 
 
 def register(request):
@@ -142,10 +143,10 @@ def profile(request):
         }
         return render(request,template_name,context)
     else:
-        return HttpResponseRedirect('logIn')
+        return HttpResponseRedirect('/logIn')
 
 
 def logOut(request):
     logout(request)
-    return HttpResponseRedirect('logIn')
+    return HttpResponseRedirect('/logIn')
     
