@@ -55,12 +55,15 @@ def jobPost(request):
 
 
 def jobPostDetail(request,id):
-    data = jobPostData.objects.get(id=id)
-    template_name = 'main/jobPostDetail.html'
-    context={
-        'data':data
-    }
-    return render(request,template_name,context)
+    if request.user.is_authenticated:
+        data = jobPostData.objects.get(id=id)
+        template_name = 'main/jobPostDetail.html'
+        context={
+            'data':data
+        }
+        return render(request,template_name,context)
+    else:
+        return HttpResponseRedirect('/logIn')
 
 
 def jobPostUpdate(request,id):
