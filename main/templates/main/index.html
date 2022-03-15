@@ -218,6 +218,10 @@ InstantHiring
                     <li>
                       <i class="fas fa-map-marker-alt"></i>{{dt.location}}
                     </li>
+                    {% if request.user.username == dt.author %}
+                    <li><a href=""><i class="fa fa-edit"></a></i></li>
+                    <li><a href=""><i class="fa fa-trash"></a></i></li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
@@ -243,14 +247,17 @@ InstantHiring
                     <li>
                       <i class="fas fa-map-marker-alt"></i>Athens, Greece
                     </li>
-                    <li>$3500 - $4000</li>
+    
+
                   </ul>
                 </div>
               </div>
               <div class="items-link f-right">
                 <a href="job_details.html">Full Time</a>
                 <span>7 hours ago</span>
+               
               </div>
+           
             </div>
             <!-- single-job-content -->
             <div class="single-job-items mb-30">
