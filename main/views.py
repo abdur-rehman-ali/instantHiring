@@ -79,6 +79,15 @@ def jobPostUpdate(request,id):
     else:
         return HttpResponseRedirect('/logIn/')
 
+def jobPostDelete(request,id):
+    if request.user.is_authenticated:
+        post=jobPostData.objects.get(id=id)
+        post.delete()
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/logIn/')
+
+
 def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
