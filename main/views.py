@@ -62,6 +62,23 @@ def jobPostDetail(request,id):
     return render(request,template_name,context)
 
 
+def jobPostUpdate(request,id):
+    if request.user.is_authenticated:
+        post=jobPostData.objects.get(pk=id)
+        if request.method=="POST":
+            fm=PostForm(request.POST,instance=post)
+            if fm.is_valid():
+                fm.save()
+        else:
+            fm = PostForm(instance=post)
+        template_name = 'main/updatePost.html'
+        context ={
+            'form':fm
+        }
+        return render(request,template_name,context)
+    else:
+        return HttpResponseRedirect('/logIn/')
+
 def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')

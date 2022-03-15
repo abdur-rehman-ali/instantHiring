@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %} {% load static %} 
+{% block title %}
+Update
+{% endblock title %}
+
+{% block body %}
+<section class="container my-5">
+    <h1 class="text-center text-uppercase">Update job post</h1>
+    <form action="" method="POST" novalidate>
+        <div class="row gtr-uniform">
+          {% csrf_token %}
+          {{ form.media}}
+          {% for er in form.non_field_errors %}
+          <small class="alert-danger">{{er|striptags}}</small>
+          {% endfor %} {% for field in form %}
+          <div class="col-12 col-12-xsmall mb-20">
+            {{field.label_tag}} <br>
+            {{field}}
+            <small class="alert-danger">{{field.errors|striptags}}</small>
+          </div>
+          {% endfor %}
+    
+          <div class="col-12">
+            <input type="submit" class="btn btn-block mb-20" value="Update Post" />
+          </div>
+        </div>
+      </form>
+</section>
+{% endblock body %}
+

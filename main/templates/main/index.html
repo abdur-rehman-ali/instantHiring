@@ -219,7 +219,7 @@ InstantHiring
                       <i class="fas fa-map-marker-alt"></i>{{dt.location}}
                     </li>
                     {% if request.user.username == dt.author %}
-                    <li><a href=""><i class="fa fa-edit"></a></i></li>
+                    <li><a href=" {% url 'jobPostUpdate' dt.id %} "><i class="fa fa-edit"></a></i></li>
                     <li><a href=""><i class="fa fa-trash"></a></i></li>
                     {% endif %}
                   </ul>
