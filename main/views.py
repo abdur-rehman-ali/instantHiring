@@ -139,10 +139,12 @@ def profile(request):
             if fm.is_valid():
                 fm.save()
         else:
+            data = jobPostData.objects.filter(author = request.user.username)
             fm=userDataUpdateForm(instance=request.user)
         template_name = 'main/profile.html'
         context={
-            'form':fm
+            'form':fm,
+            'data':data,
         }
         return render(request,template_name,context)
     else:

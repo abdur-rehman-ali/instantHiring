@@ -33,4 +33,52 @@ profile
   </form>
 </section>
 
+<section class="featured-job-area feature-padding">
+  <div class="container">
+    <!-- Section Tittle -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-tittle text-center">
+          <span>Recent</span>
+          <h2>My Job Posts</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+
+        {%  for dt in data %}
+        <!-- single-job-content -->
+        <div class="single-job-items mb-30">
+          <div class="job-items">
+            <div class="company-img">
+              <a href="{% url 'jobPostDetail' dt.id %}"
+                ><img src="{% static  'main/assets/img/icon/job-list1.png' %} " alt=""
+              /></a>
+            </div>
+            <div class="job-tittle">
+              <a href="{% url 'jobPostDetail' dt.id %}"><h4>{{dt.title}}</h4></a>
+              <ul>
+                <li>{{dt.category}}</li>
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>{{dt.location}}
+                </li>
+                {% if request.user.username == dt.author %}
+                <li><a href=" {% url 'jobPostUpdate' dt.id %} "><i class="fa fa-edit"></a></i></li>
+                <li><a href=" {% url 'jobPostDelete' dt.id %} "><i class="fa fa-trash"></a></i></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="items-link f-right">
+            <a href="{% url 'jobPostDetail' dt.id %}">{{dt.job_nature}}</a>
+            <span>{{dt.posted_date}}</span>
+          </div>
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock body %}
