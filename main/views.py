@@ -1,5 +1,6 @@
 
 from multiprocessing import context
+from re import template
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
@@ -93,8 +94,13 @@ def jobPostDelete(request,id):
     else:
         return HttpResponseRedirect('/logIn')
 
-
 def register(request):
+    template_name = 'main/registerOption.html'
+    return render(request,template_name)
+
+
+
+def studentRegister(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     else:
@@ -103,6 +109,25 @@ def register(request):
             if form.is_valid():
                 user = form.save()
                 group = Group.objects.get(name='Student')
+                user.groups.add(group)
+                form = registrationForm()
+        else:
+            form = registrationForm()
+        template_name = 'main/register.html'
+        context={
+            'form':form
+        }
+        return render(request,template_name,context)
+
+def companyRegister(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    else:
+        if request.method == "POST":
+            form = registrationForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                group = Group.objects.get(name='Company')
                 user.groups.add(group)
                 form = registrationForm()
         else:

@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %} {% load static %} 
+
+{% block title %}
+register user
+{% endblock title %}
+{% block body %}
+<div class="container section-pad-t30">
+  
+  <small class="items-link f-left" ><a href="{% url 'studentRegister' %}">Student</a></small> 
+  <small class="items-link f-left" ><a href="{% url 'companyRegister' %}">Company</a></small> 
+</div>
+
+{% endblock body %}
