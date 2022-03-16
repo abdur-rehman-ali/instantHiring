@@ -41,13 +41,11 @@ profile
 
         <div class="section-tittle text-center">
           <span>Recent</span>
-       
-          {% comment %} {{request.user.groups.get|striptags}}
-          {% if request.user.groups.get in " Company " %}
-          <h2>Jobs I have applied</h2>
+          {% if request.user.groups.get|striptags == "Company" %}
+          <h2>My Job Posts</h2>
           {% else %} 
-          <h2>Company</h2>
-          {% endif %} {% endcomment %}
+          <h2>Jobs I have applied</h2>
+          {% endif %} 
         </div>
 
       </div>
