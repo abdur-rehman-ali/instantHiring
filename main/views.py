@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 def home(request):
 
-    data = jobPostData.objects.all()
+    data = jobPostData.objects.all().order_by('-posted_date')
     template_name = 'main/index.html'
     context={
         'data':data,
@@ -139,7 +139,7 @@ def profile(request):
             if fm.is_valid():
                 fm.save()
         else:
-            data = jobPostData.objects.filter(author = request.user.username)
+            data = jobPostData.objects.filter(author = request.user.username).order_by('-posted_date')
             fm=userDataUpdateForm(instance=request.user)
         template_name = 'main/profile.html'
         context={
