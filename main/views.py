@@ -1,9 +1,11 @@
+
 from multiprocessing import context
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
 from .models import jobPostData
 from django.urls import reverse_lazy
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
@@ -99,7 +101,9 @@ def register(request):
         if request.method == "POST":
             form = registrationForm(request.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
+                group = Group.objects.get(name='Student')
+                user.groups.add(group)
                 form = registrationForm()
         else:
             form = registrationForm()

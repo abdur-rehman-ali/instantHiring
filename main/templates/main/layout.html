@@ -93,8 +93,11 @@
                     <nav class="d-none d-lg-block">
                       <ul id="navigation">
                         {% if request.user.is_authenticated %}
+                        {% if perms.main.add_jobpostdata %}
                         <li><a href="{% url 'jobPost' %}">Post a job </a></li>
                         {% endif %}
+                        {% endif %}
+                        
                         {% comment %} <li><a href="job_listing.html">Find a Jobs </a></li>
                         <li><a href="about.html">About</a></li> {% endcomment %}
                         {% comment %} <li>
