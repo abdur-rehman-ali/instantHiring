@@ -110,7 +110,8 @@ def studentRegister(request):
                 user = form.save()
                 group = Group.objects.get(name='Student')
                 user.groups.add(group)
-                form = registrationForm()
+                # form = registrationForm()
+                return HttpResponseRedirect('/logIn')
         else:
             form = registrationForm()
         template_name = 'main/register.html'
@@ -129,7 +130,8 @@ def companyRegister(request):
                 user = form.save()
                 group = Group.objects.get(name='Company')
                 user.groups.add(group)
-                form = registrationForm()
+                # form = registrationForm()
+                return HttpResponseRedirect('/logIn')
         else:
             form = registrationForm()
         template_name = 'main/register.html'
