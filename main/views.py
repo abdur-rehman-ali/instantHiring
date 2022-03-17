@@ -181,6 +181,22 @@ def profile(request):
     else:
         return HttpResponseRedirect('/logIn')
 
+def updateProfile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            fm=userDataUpdateForm(data=request.POST,instance=request.user)
+            if fm.is_valid():
+                fm.save()
+        else:
+            fm=userDataUpdateForm(instance=request.user)
+        template_name = 'main/updateProfile.html'
+        context={
+            'form':fm,
+        }
+        return render(request,template_name,context)
+    else:
+        return HttpResponseRedirect('/logIn')
+
 
 def logOut(request):
     logout(request)

@@ -41,7 +41,8 @@ class jobPostData(models.Model):
 
 class StudentProfile(models.Model):
     user = models.OneToOneField(to=User,on_delete=models.CASCADE,null=True)
-    bio = models.CharField(max_length=70)
+    bio = models.CharField(max_length=70,null=True,blank=True)
+    desription = RichTextField(null=True,blank=True)
     facebook_url = models.CharField(max_length=70,null=True,blank=True)
     linkedin_url = models.CharField(max_length=70,null=True,blank=True)
     github_url = models.CharField(max_length=70,null=True,blank=True)

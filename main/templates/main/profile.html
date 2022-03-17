@@ -41,7 +41,7 @@ profile
           </div>
         </div>
         <div class="items-link f-right">
-          <a href="job_details.html">Edit Profile</a>
+          <a href="{% url 'updateProfile' %} ">Edit Profile</a>
         </div>
       </div>
         <hr><hr>
@@ -49,63 +49,6 @@ profile
       </div>
     </div>
   </div>
-</section>
-
-
-<section class="container section-pad-t30">
-  {% if request.user.is_authenticated %}
-  <header class="major text-center">
-    <h1>Welcome {{request.user.username}}</h1>
-  </header>
-  {% endif %}
-
-
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-3">
-            <div class="card">
-                <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
-                  
-                    <div class="img-square-wrapper">
-                      {% if request.user.studentprofile.profile_pic %}
-                        <img class="image-fluid" src="{{request.user.studentprofile.profile_pic.url}}" alt="Card image cap" height="180px"  width="300px">
-                        {% endif %}
-                      </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{request.user.username}}</h4>
-                        <p class="card-text">{{request.user.studentprofile.bio}}</p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-  
-
- 
-
-  <!-- Update form   -->
-
-  <form action="" method="POST" novalidate>
-    <div class="row gtr-uniform">
-      {% csrf_token %} {% for er in form.non_field_errors %}
-      <small class="alert-danger">{{er|striptags}}</small>
-      {% endfor %} {% for field in form %}
-      <div class="col-12 col-12-xsmall">
-        {{field.label_tag}} {{field}}
-        <small class="alert-danger">{{field.errors|striptags}}</small>
-      </div>
-      {% endfor %}
-
-      <div class="col-12 py-4">
-        <input type="submit" class="btn btn-primary btn-block" value="Update" />
-      </div>
-    </div>
-  </form>
 </section>
 
 <section class="featured-job-area feature-padding">
