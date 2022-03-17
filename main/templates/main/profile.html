@@ -13,9 +13,31 @@ profile
   </header>
   {% endif %}
 
-  {{request.user.studentprofile.bio}}
 
-  <img src="{{request.user.studentprofile.profile_pic.url}}" alt="image here" height="300px">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
+                    <div class="img-square-wrapper">
+                        <img class="image-fluid" src="{{request.user.studentprofile.profile_pic.url}}" alt="Card image cap" height="180px"  width="300px">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{request.user.username}}</h4>
+                        <p class="card-text">{{request.user.studentprofile.bio}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+ 
 
   <!-- Update form   -->
 
