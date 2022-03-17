@@ -37,3 +37,8 @@ class jobPostData(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+
+class StudentProfile(models.Model):
+    user = models.OneToOneField(to=User,on_delete=models.CASCADE,null=True)
+    bio = models.CharField(max_length=70)
