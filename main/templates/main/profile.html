@@ -6,6 +6,52 @@ profile
 
 {% block body %}
 <!-- Section -->
+
+<section class="featured-job-area feature-padding">
+  <div class="container">
+    <!-- Section Tittle -->
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+
+       <!-- single-job-content -->
+       <div class="single-job-items mb-30">
+        <div class="job-items">
+          {% if request.user.studentprofile.profile_pic %}
+          <div class="company-img">
+            <a href="job_details.html"
+              ><img src="{{request.user.studentprofile.profile_pic.url}}" alt="" width="100px" height="100px"
+            /></a>
+          </div>
+          {% else %}
+          <div class="company-img">
+            <a href="job_details.html"
+              ><img src="{% static  'main/assets/img/icon/job-list4.png' %} " alt=""
+            /></a>
+          </div>
+          {% endif %}
+          <div class="job-tittle">
+            <a href="job_details.html"><h4>{{request.user.username}}</h4></a>
+            <ul>
+              <li>{{request.user.email}}</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>03036970173
+              </li>
+              <li>Django Developer</li>
+            </ul>
+          </div>
+        </div>
+        <div class="items-link f-right">
+          <a href="job_details.html">Edit Profile</a>
+        </div>
+      </div>
+        <hr><hr>
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="container section-pad-t30">
   {% if request.user.is_authenticated %}
   <header class="major text-center">
@@ -19,9 +65,12 @@ profile
         <div class="col-12 mt-3">
             <div class="card">
                 <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
+                  
                     <div class="img-square-wrapper">
+                      {% if request.user.studentprofile.profile_pic %}
                         <img class="image-fluid" src="{{request.user.studentprofile.profile_pic.url}}" alt="Card image cap" height="180px"  width="300px">
-                    </div>
+                        {% endif %}
+                      </div>
                     <div class="card-body">
                         <h4 class="card-title">{{request.user.username}}</h4>
                         <p class="card-text">{{request.user.studentprofile.bio}}</p>
