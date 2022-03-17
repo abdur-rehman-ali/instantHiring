@@ -317,6 +317,8 @@ InstantHiring
     <!-- Featured_job_end -->
     {% else %} 
 
+
+    
     <!-- Featured_student_start -->
     <section class="featured-job-area feature-padding">
       <div class="container">
@@ -332,6 +334,7 @@ InstantHiring
         <div class="row justify-content-center">
           <div class="col-xl-10">
 
+            {% for student in  student_data%}
            <!-- single-job-content -->
            <div class="single-job-items mb-30">
             <div class="job-items">
@@ -341,9 +344,9 @@ InstantHiring
                 /></a>
               </div>
               <div class="job-tittle">
-                <a href="job_details.html"><h4>Abdur rehman ali</h4></a>
+                <a href="job_details.html"><h4>{{student}}</h4></a>
                 <ul>
-                  <li>alijoyia911@gmail.com</li>
+                  <li>{{student.email}}</li>
                   <li>
                     <i class="fas fa-map-marker-alt"></i>03036970173
                   </li>
@@ -355,6 +358,7 @@ InstantHiring
               <a href="job_details.html">See Profile</a>
             </div>
           </div>
+          {% endfor %}
             <hr><hr>
            
           </div>

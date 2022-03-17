@@ -6,16 +6,17 @@ from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
 from .models import jobPostData
 from django.urls import reverse_lazy
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,User
 
 # Create your views here.
 
 def home(request):
-
+    student_data =User.objects.filter(groups__name='Student')
     data = jobPostData.objects.all().order_by('-posted_date')
     template_name = 'main/index.html'
     context={
         'data':data,
+        'student_data':student_data
     }
     return render(request,template_name,context)
 
