@@ -42,6 +42,12 @@ class jobPostData(models.Model):
 class StudentProfile(models.Model):
     user = models.OneToOneField(to=User,on_delete=models.CASCADE,null=True)
     bio = models.CharField(max_length=70)
+    facebook_url = models.CharField(max_length=70,null=True,blank=True)
+    linkedin_url = models.CharField(max_length=70,null=True,blank=True)
+    github_url = models.CharField(max_length=70,null=True,blank=True)
+    instagram_url = models.CharField(max_length=70,null=True,blank=True)
+    website_url = models.CharField(max_length=70,null=True,blank=True)
+    profile_pic = models.ImageField(blank=True,null=True,upload_to='images/profile/')
 
     def __str__(self):
         return f"{self.bio}"
