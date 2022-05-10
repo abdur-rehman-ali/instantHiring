@@ -4,6 +4,11 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import jobPostData
 
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class registrationForm(UserCreationForm):
     password1=forms.CharField(widget=forms.PasswordInput(attrs={
         'class':'form-control'
@@ -79,6 +84,7 @@ class PostForm(forms.ModelForm):
             'job_nature':forms.Select(attrs={
                 'class':'form-select',
             }),
+            'application_deadline':DateInput(),
 
         }
         
