@@ -4,7 +4,7 @@ from re import template
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
-from .models import jobPostData
+from .models import StudentProfile, jobPostData
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group,User
 
@@ -172,11 +172,13 @@ def profile(request):
                 fm.save()
         else:
             data = jobPostData.objects.filter(author = request.user.username).order_by('-posted_date')
+            profile_data = StudentProfile.objects.get(user=request.user)
             fm=userDataUpdateForm(instance=request.user)
         template_name = 'main/profile.html'
         context={
             'form':fm,
             'data':data,
+            'profile_data':profile_data,
         }
         return render(request,template_name,context)
     else:

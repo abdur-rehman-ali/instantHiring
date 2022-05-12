@@ -11,7 +11,7 @@ profile
   <div class="container">
     <!-- Section Tittle -->
     <div class="row justify-content-center">
-      <div class="col-xl-10">
+      <div class="col-xl-12">
 
        <!-- single-job-content -->
        <div class="single-job-items mb-30">
@@ -46,6 +46,32 @@ profile
       </div>
         <hr><hr>
        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-job-area">
+  <div class="container">
+    <div class="section-tittle text-center">
+      {% if request.user.groups.get|striptags == "Student" %}
+      <h2>My Skills and experience</h2>
+      {% endif %} 
+    </div>
+    <div class="row justify-content-between">
+      <!-- Left Content -->
+      <div class="col-xl-12 col-lg-8">
+        <div class="job-post-details">
+          <div class="post-details1 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Description</h4>
+            </div>
+           <p>
+               {{profile_data.desription|safe}}
+           </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -104,5 +130,6 @@ profile
     </div>
   </div>
 </section>
+
 
 {% endblock body %}
