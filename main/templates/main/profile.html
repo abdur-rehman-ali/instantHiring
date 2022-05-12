@@ -18,19 +18,19 @@ profile
         <div class="job-items">
           {% if request.user.studentprofile.profile_pic %}
           <div class="company-img">
-            <a href="job_details.html"
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"
               ><img src="{{request.user.studentprofile.profile_pic.url}}" alt="" width="100px" height="100px"
             /></a>
           </div>
           {% else %}
           <div class="company-img">
-            <a href="job_details.html"
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"
               ><img src="{% static  'main/assets/img/icon/job-list4.png' %} " alt=""
             /></a>
           </div>
           {% endif %}
           <div class="job-tittle">
-            <a href="job_details.html"><h4>{{request.user.username}}</h4></a>
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"><h4>{{request.user.username}}</h4></a>
             <ul>
               <li>{{request.user.email}}</li>
               <li>
@@ -41,7 +41,10 @@ profile
           </div>
         </div>
         <div class="items-link f-right">
-          <a href="{% url 'updateProfile' %} ">Edit Profile</a>
+          <a href="{% url 'studentProfileUpdate' profile_data.id %} ">Edit Profile </a>
+        </div>
+        <div class="items-link f-right">
+          <a href="{% url 'updateProfile' %} ">User Profile </a>
         </div>
       </div>
         <hr><hr>
@@ -51,31 +54,7 @@ profile
   </div>
 </section>
 
-<section class="featured-job-area">
-  <div class="container">
-    <div class="section-tittle text-center">
-      {% if request.user.groups.get|striptags == "Student" %}
-      <h2>My Skills and experience</h2>
-      {% endif %} 
-    </div>
-    <div class="row justify-content-between">
-      <!-- Left Content -->
-      <div class="col-xl-12 col-lg-8">
-        <div class="job-post-details">
-          <div class="post-details1 mb-50">
-            <!-- Small Section Tittle -->
-            <div class="small-section-tittle">
-              <h4>Description</h4>
-            </div>
-           <p>
-               {{profile_data.desription|safe}}
-           </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="featured-job-area feature-padding">
   <div class="container">

@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UserCh
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django import forms
 from django.contrib.auth.models import User
-from .models import jobPostData
+from .models import jobPostData,StudentProfile
 
 
 class DateInput(forms.DateInput):
@@ -88,3 +88,7 @@ class PostForm(forms.ModelForm):
 
         }
         
+class StudentProfileForm(forms.ModelForm):
+    class Meta:
+        model=StudentProfile
+        fields = ['description']

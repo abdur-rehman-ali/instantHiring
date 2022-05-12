@@ -3,7 +3,7 @@ from multiprocessing import context
 from re import template
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm
+from .forms import registrationForm,logInForm,userDataUpdateForm,PostForm,StudentProfileForm
 from .models import StudentProfile, jobPostData
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group,User
@@ -184,6 +184,7 @@ def profile(request):
     else:
         return HttpResponseRedirect('/logIn')
 
+
 def updateProfile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -205,3 +206,36 @@ def logOut(request):
     logout(request)
     return HttpResponseRedirect('/logIn')
     
+
+def studentProfileDetail(request,id):
+    if request.user.is_authenticated:
+        data = StudentProfile.objects.get(id=id)
+        template_name = 'main/studentProfileDetail.html'
+        context={
+            'data':data
+        }
+        return render(request,template_name,context)
+    else:
+        return HttpResponseRedirect('/logIn')
+
+
+
+
+
+def studentProfileUpdate(request,id):
+    if request.user.is_authenticated:
+        post=StudentProfile.objects.get(id=id)
+        if request.method=="POST":
+            fm=StudentProfileForm(request.POST,instance=post)
+            if fm.is_valid():
+                fm.save()
+        else:       
+            fm=StudentProfileForm(instance=post)
+        template_name = 'main/studentProfileUpdate.html'
+        context={
+        'form':fm
+        }
+        return render(request,template_name,context)
+
+    else:
+        return HttpResponseRedirect('/logIn')

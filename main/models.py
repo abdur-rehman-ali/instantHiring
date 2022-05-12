@@ -41,7 +41,7 @@ class jobPostData(models.Model):
 
 class StudentProfile(models.Model):
     user = models.OneToOneField(to=User,on_delete=models.CASCADE,null=True)
-    desription = RichTextField(null=True,blank=True)
+    description = RichTextField(null=True,blank=True)
     profile_pic = models.ImageField(blank=True,null=True,upload_to='images/profile/')
 
         

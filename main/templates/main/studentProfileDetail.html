@@ -1,0 +1,46 @@
+{% extends 'main/layout.html' %} {% load static %} {% block title %} 
+details {% endblock title %} {% block body %}
+
+<!-- Hero Area Start-->
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height2 d-flex align-items-center"
+    data-background="{% static 'main/assets/img/hero/about.jpg'  %}"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>{{data.title}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+
+<!-- job post company Start -->
+<div class="job-post-company pt-120 pb-120">
+  <div class="container">
+    <div class="row justify-content-between">
+      <!-- Left Content -->
+      <div class="col-xl-12 col-lg-8">
+        <div class="job-post-details">
+          <div class="post-details1 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle text-center">
+              <h1>Skills and expertise</h1>
+            </div>
+           <p>
+               {{data.description|safe}}
+           </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- job post company End -->
+
+{% endblock body %}
