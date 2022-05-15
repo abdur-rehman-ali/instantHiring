@@ -10,10 +10,10 @@ class DateInput(forms.DateInput):
 
 
 class registrationForm(UserCreationForm):
-    password1=forms.CharField(widget=forms.PasswordInput(attrs={
-        'class':'form-control'
+    password1=forms.CharField(label='Password',widget=forms.PasswordInput(attrs={
+        'class':'form-control',
     }))
-    password2=forms.CharField(widget=forms.PasswordInput(attrs={
+    password2=forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={
         'class':'form-control '
     }))
     class Meta:
@@ -21,7 +21,7 @@ class registrationForm(UserCreationForm):
         fields=('username','email')
         labels={
             'username':'Username',
-            'email':'Email'
+            'email':'Email',
         }
         widgets={
             'username':forms.TextInput(attrs={
