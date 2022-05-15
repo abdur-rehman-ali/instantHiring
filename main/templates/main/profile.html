@@ -11,26 +11,26 @@ profile
   <div class="container">
     <!-- Section Tittle -->
     <div class="row justify-content-center">
-      <div class="col-xl-10">
+      <div class="col-xl-12">
 
        <!-- single-job-content -->
        <div class="single-job-items mb-30">
         <div class="job-items">
           {% if request.user.studentprofile.profile_pic %}
           <div class="company-img">
-            <a href="job_details.html"
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"
               ><img src="{{request.user.studentprofile.profile_pic.url}}" alt="" width="100px" height="100px"
             /></a>
           </div>
           {% else %}
           <div class="company-img">
-            <a href="job_details.html"
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"
               ><img src="{% static  'main/assets/img/icon/job-list4.png' %} " alt=""
             /></a>
           </div>
           {% endif %}
           <div class="job-tittle">
-            <a href="job_details.html"><h4>{{request.user.username}}</h4></a>
+            <a href="{% url 'studentProfileDetail' profile_data.id %}"><h4>{{request.user.username}}</h4></a>
             <ul>
               <li>{{request.user.email}}</li>
               <li>
@@ -41,7 +41,10 @@ profile
           </div>
         </div>
         <div class="items-link f-right">
-          <a href="{% url 'updateProfile' %} ">Edit Profile</a>
+          <a href="{% url 'studentProfileUpdate' profile_data.id %} ">Edit Profile </a>
+        </div>
+        <div class="items-link f-right">
+          <a href="{% url 'updateProfile' %} ">User Profile </a>
         </div>
       </div>
         <hr><hr>
@@ -50,6 +53,8 @@ profile
     </div>
   </div>
 </section>
+
+
 
 <section class="featured-job-area feature-padding">
   <div class="container">
@@ -104,5 +109,6 @@ profile
     </div>
   </div>
 </section>
+
 
 {% endblock body %}

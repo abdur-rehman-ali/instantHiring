@@ -2,13 +2,18 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UserCh
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django import forms
 from django.contrib.auth.models import User
-from .models import jobPostData
+from .models import jobPostData,StudentProfile
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 
 class registrationForm(UserCreationForm):
-    password1=forms.CharField(widget=forms.PasswordInput(attrs={
-        'class':'form-control'
+    password1=forms.CharField(label='Password',widget=forms.PasswordInput(attrs={
+        'class':'form-control',
     }))
-    password2=forms.CharField(widget=forms.PasswordInput(attrs={
+    password2=forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={
         'class':'form-control '
     }))
     class Meta:
@@ -16,7 +21,7 @@ class registrationForm(UserCreationForm):
         fields=('username','email')
         labels={
             'username':'Username',
-            'email':'Email'
+            'email':'Email',
         }
         widgets={
             'username':forms.TextInput(attrs={
@@ -79,6 +84,11 @@ class PostForm(forms.ModelForm):
             'job_nature':forms.Select(attrs={
                 'class':'form-select',
             }),
+            'application_deadline':DateInput(),
 
         }
         
+class StudentProfileForm(forms.ModelForm):
+    class Meta:
+        model=StudentProfile
+        fields = ['description']
